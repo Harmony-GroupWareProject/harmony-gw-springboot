@@ -27,7 +27,7 @@ public class AuthController {
 	@Autowired
 	UserServiceImpl userService;
 	
-	@PostMapping("/login.do")
+	@PostMapping("/login")
 	public ResponseEntity<?> getTokent(@RequestBody AccountCredentials credentls) {
 
 		UsernamePasswordAuthenticationToken creds = new UsernamePasswordAuthenticationToken(credentls.getEmpNo(),
@@ -41,7 +41,7 @@ public class AuthController {
 				.header(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "Authorization").build();
 	}
 	
-    @PostMapping("/register.do")
+    @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody Employee user) {
         Employee savedUser = userService.saveUser(user);
         return ResponseEntity.ok(savedUser);

@@ -52,12 +52,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable()
+		http.csrf().disable().cors().and()
 			.sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeRequests()
 			// /login 엔드포인트에 대한 POST 요청은 보호되지 않음
-			.antMatchers(HttpMethod.POST, "/login.do", "/register.do").permitAll()
+			.antMatchers(HttpMethod.POST, "/login", "/register").permitAll()
 			// 다른 모든 요청은 보호됨
 			.anyRequest().authenticated().and()
 			.exceptionHandling()
