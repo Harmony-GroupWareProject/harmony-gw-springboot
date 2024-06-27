@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.harmony.gw.dto.OrgEmpResponseDTO;
 import com.harmony.gw.entity.Employee;
 import com.harmony.gw.entity.Organization;
 import com.harmony.gw.service.OrgEmpServiceImpl;
@@ -20,18 +21,15 @@ public class OrgEmpController {
 	OrgEmpServiceImpl orgEmpService;
 	
 	@GetMapping("/orgEmpList")
-	public Map<String, Object> getOrgEmpList() {
-		Map<String, Object> orgEmpListMap = new HashMap<>();
-	
-		orgEmpListMap.put("orgList", orgEmpService.getOrgList());
-		orgEmpListMap.put("empList", orgEmpService.getEmpList());
+	public OrgEmpResponseDTO getOrgEmpList() {
+		OrgEmpResponseDTO response = new OrgEmpResponseDTO(orgEmpService.getOrgList(), orgEmpService.getEmpList());
 		for (Organization org : orgEmpService.getOrgList()) {
 			System.out.println(org);
 		}
 		for (Employee emp : orgEmpService.getEmpList()) {
 			System.out.println(emp);
 		}
-		return orgEmpListMap;
+		return response;
 	}
 	
 }
