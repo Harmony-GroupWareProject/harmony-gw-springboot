@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.harmony.gw.entity.Employee;
-import com.harmony.gw.entity.EmployeeRepository;
+import com.harmony.gw.repository.EmployeeRepository;
 
 @Service
 public class UserDetailServiceImpl implements UserDetailsService{

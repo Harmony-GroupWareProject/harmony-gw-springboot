@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.harmony.gw.entity.Employee;
-import com.harmony.gw.entity.EmployeeRepository;
+import com.harmony.gw.repository.EmployeeRepository;
 
 
 @SpringBootApplication

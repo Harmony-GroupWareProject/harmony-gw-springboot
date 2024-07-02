@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.harmony.gw.entity.Employee;
-import com.harmony.gw.entity.EmployeeRepository;
+import com.harmony.gw.repository.EmployeeRepository;
 
 @Service
 @Transactional

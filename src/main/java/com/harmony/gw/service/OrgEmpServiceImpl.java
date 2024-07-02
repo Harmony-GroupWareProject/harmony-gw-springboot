@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.harmony.gw.entity.Employee;
-import com.harmony.gw.entity.EmployeeRepository;
 import com.harmony.gw.entity.Organization;
-import com.harmony.gw.entity.OrganizationRepository;
+import com.harmony.gw.repository.EmployeeRepository;
+import com.harmony.gw.repository.OrganizationRepository;
 
 @Service
 @Transactional
