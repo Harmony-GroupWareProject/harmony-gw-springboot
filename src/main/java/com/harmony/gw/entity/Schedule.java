@@ -1,6 +1,7 @@
 package com.harmony.gw.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.persistence.Column;
@@ -31,17 +32,14 @@ public class Schedule {
 	@Column(nullable = false)
     private String sTitle;
     
-    @Column(nullable = false)
-	private LocalDate startDate;
+    @Column(nullable = false, name="`start`")
+	private LocalDateTime start;
 	
-    @Column(nullable = false)
-	private LocalDate endDate;
+    @Column(nullable = false, name="`end`")
+	private LocalDateTime end;
     
     @Column(nullable = false)
-    private LocalTime startTime;
-    
-    @Column(nullable = false)
-    private LocalTime endTime;
+    private Boolean allDay;
     
 //  @Column(nullable = false)
 //  private int scheduleType; //1: 회사일정 2: 개인일정 
