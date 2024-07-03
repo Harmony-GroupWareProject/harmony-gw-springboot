@@ -59,6 +59,14 @@ public class ScheduleServiceImpl {
 		System.out.println("=== Service :: updateSchedule : ====" + updatedSchedule);
 	}
 	
+	// 일정 삭제하기(1개)
+	public void deleteSchedule(Long scheduleIdx) {
+		Schedule schedule = scheduleRepository.findByScheduleIdx(scheduleIdx);
+		
+		scheduleRepository.delete(schedule);
+		
+		System.out.println("=====delete 성공!!!!========");
+	}
 	
 	
 	

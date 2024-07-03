@@ -19,6 +19,7 @@ public class ScheduleRequestDTO {
 	
 	// 일정 번호 idx
     private Long scheduleIdx;
+
 	
 	
 }
