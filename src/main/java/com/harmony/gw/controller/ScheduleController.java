@@ -18,23 +18,16 @@ import com.harmony.gw.service.ScheduleServiceImpl;
 
 @RestController
 public class ScheduleController {
-	private ScheduleServiceImpl scheduleServiceImpl;
 	
 	@Autowired
-	public ScheduleController(ScheduleServiceImpl scheduleServiceImpl) {
-		this.scheduleServiceImpl = scheduleServiceImpl;
-	}
+	ScheduleServiceImpl scheduleServiceImpl;
 	
 	// create(save)
 	@PostMapping(value = "/scheduleSave")
-    public ResponseEntity<Boolean> createSchedule(@RequestBody ScheduleRequestDTO scheduleRequestDTO) {
-        try {
-            scheduleServiceImpl.saveSchedule(scheduleRequestDTO); 
-            return ResponseEntity.status(HttpStatus.OK).body(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
-        }
+    public ResponseEntity<Schedule> createSchedule(@RequestBody ScheduleRequestDTO scheduleRequestDTO) {
+        	Schedule saveSchedule = scheduleServiceImpl.saveSchedule(scheduleRequestDTO); 
+            return ResponseEntity.status(HttpStatus.OK).body(saveSchedule);
+        
     }
 	
 	// read
@@ -47,13 +40,13 @@ public class ScheduleController {
 	
 	// update
 	@PutMapping(value="/scheduleUpdate")
-	public ResponseEntity<Boolean> updateScheduleInfo(@RequestBody ScheduleRequestDTO scheduleRequestDTO){
+	public ResponseEntity<Schedule> updateScheduleInfo(@RequestBody ScheduleRequestDTO scheduleRequestDTO){
 		System.out.println(scheduleRequestDTO.getScheduleIdx());
 		System.out.println("=============== scheduleRequestDTO ============ : " + scheduleRequestDTO);
 		
-		scheduleServiceImpl.updateSchedule(scheduleRequestDTO);
+		Schedule updateSchedule = scheduleServiceImpl.updateSchedule(scheduleRequestDTO);
 		
-		return ResponseEntity.status(HttpStatus.OK).body(true);
+		return ResponseEntity.status(HttpStatus.OK).body(updateSchedule);
 	}
 	
 	// delete 
