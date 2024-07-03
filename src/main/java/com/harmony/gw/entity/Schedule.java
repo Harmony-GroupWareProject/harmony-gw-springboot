@@ -30,7 +30,7 @@ public class Schedule {
 	// = autoincrement
 	
 	@Column(nullable = false)
-    private String sTitle;
+    private String title;
     
     @Column(nullable = false, name="`start`")
 	private LocalDateTime start;

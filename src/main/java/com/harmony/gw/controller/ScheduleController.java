@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.harmony.gw.dto.ScheduleRequestDTO;
@@ -22,15 +24,17 @@ public class ScheduleController {
 		this.scheduleServiceImpl = scheduleServiceImpl;
 	}
 	
-	// create
-	@PostMapping(value="/scheduleSave")
-	public ResponseEntity<Boolean> createSchedule(ScheduleRequestDTO scheduleRequestDTO){
-		
-		scheduleServiceImpl.saveScheduleList(scheduleRequestDTO);
-		
-		return ResponseEntity.status(HttpStatus.OK).body(true);
-				
-	}
+	// create(save)
+	@PostMapping(value = "/scheduleSave")
+    public ResponseEntity<Boolean> createSchedule(@RequestBody ScheduleRequestDTO scheduleRequestDTO) {
+        try {
+            scheduleServiceImpl.saveSchedule(scheduleRequestDTO); 
+            return ResponseEntity.status(HttpStatus.OK).body(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+        }
+    }
 	
 	// read
 	@GetMapping(value="/scheduleList")
@@ -39,6 +43,17 @@ public class ScheduleController {
 		System.out.println("get 스케쥴 리스트!!------------------" + scheduleList);
 		return ResponseEntity.status(HttpStatus.OK).body(scheduleList);
 	}
+	
+	// update
+	@PutMapping(value="/scheduleUpdate/{scheduleIdx}")
+	public ResponseEntity<Boolean> updateScheduleInfo(ScheduleRequestDTO scheduleRequestDTO){
+		scheduleServiceImpl.updateSchedule(scheduleRequestDTO);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(true);
+	}
+	
+	// delete 
+	
 	
 	
 }
