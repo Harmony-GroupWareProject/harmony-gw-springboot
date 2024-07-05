@@ -50,9 +50,6 @@ public class Employee {
     
     private LocalDate outDate;
 
-    @Column(length = 1)
-    private String delYN;
-    
     @CreationTimestamp
     private LocalDate createDate;
     
@@ -70,7 +67,6 @@ public class Employee {
 		this.position = position;
 		this.role = role;
 		this.hireDate = hireDate;
-		this.delYN = "N";
 	}
     
     
