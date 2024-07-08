@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.harmony.gw.dto.UserRegisterDTO;
 import com.harmony.gw.entity.Employee;
 import com.harmony.gw.repository.EmployeeRepository;
 
@@ -16,19 +17,27 @@ import com.harmony.gw.repository.EmployeeRepository;
 public class UserServiceImpl {
 
 	@Autowired
-    private EmployeeRepository userRepository;
+	private EmployeeRepository userRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
-    public Employee saveUser(Employee user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("USER");
-        return userRepository.save(user);
+	public Employee saveUser(UserRegisterDTO user) {
+    	Employee saveUser = new Employee(user.getEmpNo(),
+    			passwordEncoder.encode(user.getPassword()),
+    			user.getEmpName(),
+    			user.getOrgCd(),
+    			user.getPhoneNum(),
+    			user.getEmail(),
+    			user.getPosition(),
+    			"USER",
+    			user.getHireDate());
+    	System.out.println(saveUser.getPassword());
+        return userRepository.save(saveUser);
     }
-    
-    public Optional<Employee> findByUsername(String userId) {
-        return userRepository.findByEmpNo(userId);
-    }
-    
+
+	public Optional<Employee> findByUsername(String userId) {
+		return userRepository.findByEmpNo(userId);
+	}
+
 }

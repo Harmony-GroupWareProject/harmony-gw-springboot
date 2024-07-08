@@ -1,4 +1,4 @@
-package com.harmony.gw.entity;
+package com.harmony.gw.dto;
 
 import lombok.Getter;
 import lombok.Setter;

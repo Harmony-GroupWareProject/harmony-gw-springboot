@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.harmony.gw.entity.AccountCredentials;
+import com.harmony.gw.dto.AccountCredentials;
+import com.harmony.gw.dto.UserRegisterDTO;
 import com.harmony.gw.entity.Employee;
 import com.harmony.gw.service.JwtService;
 import com.harmony.gw.service.UserServiceImpl;
@@ -42,7 +43,7 @@ public class AuthController {
 	}
 	
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody Employee user) {
+    public ResponseEntity<?> registerUser(@RequestBody UserRegisterDTO user) {
         Employee savedUser = userService.saveUser(user);
         return ResponseEntity.ok(savedUser);
     }

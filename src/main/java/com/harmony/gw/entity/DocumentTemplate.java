@@ -14,16 +14,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "document_template")
-@SequenceGenerator(name = "template_seq", sequenceName = "template_seq", allocationSize = 1)
 public class DocumentTemplate {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "template_seq")
     private Long id;
-
-    private String name;
-
+    
     @Lob
     private String content;
+    
+    private String name;
+    
+//    private String category;
 
     // Getters and setters
     public Long getId() {

@@ -24,7 +24,7 @@ public class Organization {
 
     @Id
     @Column(nullable = false, unique = true)
-    private String orgCd;
+    private String orgCd; // 부서 코드
 
     @Column(nullable = false)
     private String orgName;
