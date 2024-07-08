@@ -30,14 +30,18 @@ public class UserServiceImpl {
     			user.getPhoneNum(),
     			user.getEmail(),
     			user.getPosition(),
-    			"USER",
+    			user.getRole(),
     			user.getHireDate());
     	System.out.println(saveUser.getPassword());
         return userRepository.save(saveUser);
     }
-
-	public Optional<Employee> findByUsername(String userId) {
+	
+	public Optional<Employee> findByEmpNo(String userId) {
 		return userRepository.findByEmpNo(userId);
+	}
+	
+	public boolean existsByEmpNo(String empNo) {
+		return userRepository.existsByEmpNo(empNo);
 	}
 
 }

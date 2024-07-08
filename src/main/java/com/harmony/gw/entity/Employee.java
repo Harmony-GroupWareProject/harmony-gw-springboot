@@ -73,5 +73,4 @@ public class Employee {
 		this.delYN = "N";
 	}
     
-    
 }

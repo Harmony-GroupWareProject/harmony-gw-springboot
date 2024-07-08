@@ -26,5 +26,7 @@ public class UserRegisterDTO {
     
     private LocalDate hireDate;
     
+    private String role;
+
 
 }
