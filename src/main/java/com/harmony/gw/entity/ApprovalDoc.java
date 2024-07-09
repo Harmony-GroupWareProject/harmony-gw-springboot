@@ -4,32 +4,40 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 // 결재 문서 관리 테이블
-public class Approval {
+public class ApprovalDoc {
 	
 	// 결재문서 번호
 	@Id
-	private Long docIdx;
+	@GenericGenerator(name = "idGenerator", strategy = "com.harmony.gw.entity.IdGenerator")
+	@GeneratedValue(generator = "idGenerator")
+	private String docIdx;
 	
 	// 결재문서 양식
 	@Column(nullable = false)
 	private String docType;
 	
 	// 결재문서 작성자 id
-	@Column(nullable = false)
-	private String docCreateId;
-	
-	// 결재문서 작성자 이름
-	@Column(nullable = false)
-	private String docCreateName;
+	@ManyToOne
+	@JoinColumn(name = "writer", nullable = false)
+	@ToString.Exclude
+	private Employee employee;
 	
 	// 결재문서 제목
 	@Column(nullable = false)
@@ -38,19 +46,13 @@ public class Approval {
 	// 결재문서 내용(작성 내용)
 	@Column(nullable = false)
 	private String docContent;
-	
-	// 결재문서 수신 참조자
-	@Column(nullable = true)
-	private String referenceId;
-		
+			
 	// 결재문서 작성 일자
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private LocalDate createDate;
 	
 	// 결재문서 최종 결재 완료일자(update 계속)
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private LocalDate completeDate;
-	
-	// 결재 순서?
 
 }

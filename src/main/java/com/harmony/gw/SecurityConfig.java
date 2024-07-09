@@ -57,7 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeRequests()
 			// /login 엔드포인트에 대한 POST 요청은 보호되지 않음
-			.antMatchers(HttpMethod.POST, "/login").permitAll()
+			.antMatchers(HttpMethod.POST, "/login", "/saveApprovalDoc").permitAll()
+//			.antMatchers(HttpMethod.POST, "/login").permitAll()
 //	        .antMatchers(HttpMethod.POST, "/register").permitAll()
 			// 다른 모든 요청은 보호됨
 			.anyRequest().authenticated().and()
