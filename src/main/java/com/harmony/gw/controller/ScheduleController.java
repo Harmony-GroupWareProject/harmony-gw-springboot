@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.harmony.gw.dto.ScheduleRequestDTO;
@@ -24,8 +25,8 @@ public class ScheduleController {
 	
 	// create(save)
 	@PostMapping(value = "/scheduleSave")
-    public ResponseEntity<Schedule> createSchedule(@RequestBody ScheduleRequestDTO scheduleRequestDTO) {
-        	Schedule saveSchedule = scheduleServiceImpl.saveSchedule(scheduleRequestDTO); 
+    public ResponseEntity<Schedule> createSchedule(@RequestBody Schedule schedule) {
+        	Schedule saveSchedule = scheduleServiceImpl.saveSchedule(schedule); 
             return ResponseEntity.status(HttpStatus.OK).body(saveSchedule);
         
     }
@@ -37,6 +38,14 @@ public class ScheduleController {
 //		System.out.println("get 스케쥴 리스트!!------------------" + scheduleList);
 		return ResponseEntity.status(HttpStatus.OK).body(scheduleList);
 	}
+	
+	// read
+		@GetMapping(value="/personalScheduleList")
+		public ResponseEntity<List<Schedule>> selectScheduleInfo(@RequestParam String empNo){
+			List<Schedule> scheduleList = scheduleServiceImpl.getPesonalScheduleList(empNo);
+//			System.out.println("get 스케쥴 리스트!!------------------" + scheduleList);
+			return ResponseEntity.status(HttpStatus.OK).body(scheduleList);
+		}
 	
 	// update
 	@PutMapping(value="/scheduleUpdate")

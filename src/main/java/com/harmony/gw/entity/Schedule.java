@@ -1,8 +1,6 @@
 package com.harmony.gw.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +25,6 @@ public class Schedule {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "schedule_seq")
     private Long scheduleIdx;
-	// = autoincrement
 	
 	@Column(nullable = false)
     private String title;
@@ -41,14 +38,10 @@ public class Schedule {
     @Column(nullable = false)
     private Boolean allDay;
     
-//  @Column(nullable = false)
-//  private int scheduleType; //1: 회사일정 2: 개인일정 
+    @Column(nullable = false)
+    private int scheduleType; //1: 회사일정 2: 개인일정 
     
-//  @Column(nullable = false)
-//  private String createEmpNo;
+    @Column(nullable = false)
+    private String empNo; // 만든이
     
-    
-	
-	
-	
 }

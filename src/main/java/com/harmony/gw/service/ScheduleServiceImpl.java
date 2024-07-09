@@ -16,13 +16,13 @@ public class ScheduleServiceImpl {
 	ScheduleRepository scheduleRepository;
 	
 	// 일정 저장하기(1개)
-	public Schedule saveSchedule(ScheduleRequestDTO scheduleRequestDTO){
-	        Schedule schedule = new Schedule();
-	        
-	        schedule.setTitle(scheduleRequestDTO.getTitle());
-	        schedule.setStart(scheduleRequestDTO.getStart());
-	        schedule.setEnd(scheduleRequestDTO.getEnd());
-	        schedule.setAllDay(scheduleRequestDTO.getAllDay());
+	public Schedule saveSchedule(Schedule schedule){
+//	        Schedule schedule = new Schedule();
+//	        
+//	        schedule.setTitle(scheduleRequestDTO.getTitle());
+//	        schedule.setStart(scheduleRequestDTO.getStart());
+//	        schedule.setEnd(scheduleRequestDTO.getEnd());
+//	        schedule.setAllDay(scheduleRequestDTO.getAllDay());
 	        
 	        Schedule savedSchedule = scheduleRepository.save(schedule);
 	    
@@ -59,6 +59,11 @@ public class ScheduleServiceImpl {
 		scheduleRepository.delete(schedule);
 		
 		System.out.println("=====delete 성공!!!!========");
+	}
+
+	public List<Schedule> getPesonalScheduleList(String empNo) {
+
+		return scheduleRepository.findByEmpNo(empNo);
 	}
 	
 	
