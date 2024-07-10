@@ -1,10 +1,13 @@
 package com.harmony.gw.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.harmony.gw.dto.ApprovalDocResponseDTO;
 import com.harmony.gw.dto.ApprovalDocSaveRequestDTO;
 import com.harmony.gw.entity.ApprovalDoc;
 import com.harmony.gw.entity.Approver;
@@ -64,8 +67,17 @@ public class ApprovalServiceImpl {
 		
 		
 	}
+
+
+	public ApprovalDocResponseDTO getApprovalDoc(String docIdx) {
+		ApprovalDoc getApprovalDoc = approvalDocRepository.findByDocIdx(docIdx);
+		ApprovalDocResponseDTO docResponseDTO = new ApprovalDocResponseDTO();
+		docResponseDTO.setDocContent(getApprovalDoc.getDocContent());
+		docResponseDTO.setDocTitle(getApprovalDoc.getDocTitle());
+		docResponseDTO.setWriter(getApprovalDoc.getEmployee().getEmpName());
+		
+		return docResponseDTO;
+	}
 	
-//	public Approval saveApproval() {
-//		
-//	}
+
 }

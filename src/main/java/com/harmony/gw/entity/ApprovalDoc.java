@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -44,6 +45,7 @@ public class ApprovalDoc {
 	private String docTitle;
 	
 	// 결재문서 내용(작성 내용)
+	@Lob
 	@Column(nullable = false)
 	private String docContent;
 			
