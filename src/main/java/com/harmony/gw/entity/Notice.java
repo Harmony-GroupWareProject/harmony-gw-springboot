@@ -35,7 +35,7 @@ public class Notice {
 	@ManyToOne
 	@JoinColumn(name = "writer", nullable = false)
 	@ToString.Exclude
-    private Employee employee;
+    private Employee empNo;
     
 	@Column(nullable = false)
     private String title;
