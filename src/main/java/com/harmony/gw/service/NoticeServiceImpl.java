@@ -22,5 +22,10 @@ public class NoticeServiceImpl {
 		Pageable pageable = PageRequest.of(page, size, Sort.by("noticeIdx").descending());
 		return noticeRepository.findAll(pageable);
 	}
+
+	public void saveNotice(Notice notice) {
+		noticeRepository.save(notice);
+		
+	}
 	
 }
