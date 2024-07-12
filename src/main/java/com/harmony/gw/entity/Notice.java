@@ -50,4 +50,6 @@ public class Notice {
     @UpdateTimestamp
     @Column(nullable = false)
     private LocalDate updateDate;
+
+	
 }

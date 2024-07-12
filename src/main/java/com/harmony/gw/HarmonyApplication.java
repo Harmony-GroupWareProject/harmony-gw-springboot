@@ -15,6 +15,7 @@ import com.harmony.gw.entity.Organization;
 import com.harmony.gw.entity.Schedule;
 import com.harmony.gw.repository.DocumentTemplateRepository;
 import com.harmony.gw.repository.EmployeeRepository;
+import com.harmony.gw.repository.NoticeRepository;
 import com.harmony.gw.repository.OrganizationRepository;
 import com.harmony.gw.repository.ScheduleRepository;
 import com.harmony.gw.util.MethodUtil;
@@ -36,14 +37,17 @@ public class HarmonyApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(HarmonyApplication.class, args);
 	}
-
+	
+	@Autowired
+	private NoticeRepository noticeRepository;
+	
 	@Override
 	public void run(String... args) throws Exception {
 
 		// 사용자 이름: user, 암호: user
-		urepository.save(new Employee("user", "$2a$10$NVM0n8ElaRgg7zWO1CxUdei7vWoPg91Lz2aYavh9.f9q0e4bRadue", "이유림",
+		urepository.save(new Employee("1001", "$2a$10$NVM0n8ElaRgg7zWO1CxUdei7vWoPg91Lz2aYavh9.f9q0e4bRadue", "이유림",
 				"B", "010-6698-5279", "usejin0914@gmail.com", "매니저", "USER", LocalDate.of(2024, 05, 30)));
-		urepository.save(new Employee("admin", "$2a$10$8cjz47bjbR4Mn8GMg9IZx.vyjhLXR/SKKMSZ9.mP9vpMu0ssKi8GW", "황인환",
+		urepository.save(new Employee("1002", "$2a$10$8cjz47bjbR4Mn8GMg9IZx.vyjhLXR/SKKMSZ9.mP9vpMu0ssKi8GW", "황인환",
 				"A", "010-0000-0000", "usejin00@0mail.com", "대표이사", "ADMIN", LocalDate.of(2024, 05, 30)));
 
 		Schedule[] schedules = {
@@ -82,5 +86,5 @@ public class HarmonyApplication implements CommandLineRunner {
 		String template = MethodUtil.readHtmlFileToString("업무협조");
 		drepository.save(new DocumentTemplate(50l, template, "업무협조"));
 		
-	}
+		}
 }
